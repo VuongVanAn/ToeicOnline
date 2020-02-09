@@ -12,8 +12,7 @@ import java.io.IOException;
 public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/home.jsp");
-        rd.forward(request, response);
+        request.getRequestDispatcher("/views/admin/home.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

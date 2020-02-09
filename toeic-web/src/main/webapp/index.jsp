@@ -1,8 +1,2 @@
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-<h1>Test IntelliJ</h1>
-</body>
-</html>
+<%@ include file="/common/taglib.jsp"%>
+<c:redirect url="/home.html"/>
