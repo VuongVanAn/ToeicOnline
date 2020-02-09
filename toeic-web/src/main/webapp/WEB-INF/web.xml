@@ -6,7 +6,7 @@
 
     <display-name>Toeic</display-name>
 
-   <!-- &lt;!&ndash; sitemesh docarate &ndash;&gt;
+    <!-- sitemesh docarate -->
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
@@ -15,9 +15,9 @@
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    &lt;!&ndash; end sitemesh &ndash;&gt;
+    <!-- end sitemesh docarate -->
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>DisplayImage</servlet-name>
         <servlet-class>vn.myclass.controller.DisplayImage</servlet-class>
     </servlet>
