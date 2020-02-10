@@ -14,7 +14,7 @@
         <div class="blog-post">
             <h2>${item.pojo.title}</h2>
             <p>${item.pojo.content}</p>
-            <a class="btn btn-primary" href="<c:url value="/danh-sach-huong-dan-nghe.html"/>"><fmt:message key="label.list.back" bundle="${lang}"/></a>
+            <a class="btn btn-primary" href="<c:url value=""/>"><fmt:message key="label.list.back" bundle="${lang}"/></a>
         </div>
         <!--===============-->
     </div>

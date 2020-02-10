@@ -1,5 +1,101 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<html>
+<head>
+    <title></title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <script type="text/javascript">
+                try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+            </script>
+
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#"></a>
+                </li>
+                <li class="active"></li>
+            </ul><!-- /.breadcrumb -->
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <c:if test="">
+                        <div class="alert alert-block alert-">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+
+                        </div>
+                    </c:if>
+                    <form action="" method="" enctype="multipart/form-data" id="formEdit">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="" id="" value=""/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"></label>
+                                <input type="file" name="file" id=""/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"></label>
+                            <div class="col-sm-9">
+                                <c:if test="">
+                                    <c:set var="" value=""/>
+                                </c:if>
+                                <img src="" id="" width="150px" height="150ox">
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"></label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <c:if test="">
+                                    <c:set var="" value=""/>
+                                </c:if>
+                                <textarea name="" cols="80" rows="10" id=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="submit" class="btn btn-white btn-warning btn-bold" value=""/>"/>
+                            </div>
+                        </div>
+                        <c:if test="">
+                            <input type="" name="" value=""/>
+                        </c:if>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
+
+<%--
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp"%>
 <c:url var="formUrl" value="/admin-guideline-listen-edit.html"/>
 <html>
 <head>
@@ -92,7 +188,7 @@
 <script>
     var listenGuidelineId = '';
     <c:if test="${not empty item.pojo.listenGuidelineId}">
-        listenGuidelineId = ${item.pojo.listenGuidelineId};
+    listenGuidelineId = ${item.pojo.listenGuidelineId};
     </c:if>
     $(document).ready(function () {
         var editor = CKEDITOR.replace( 'ListenGuidelineContent' );
@@ -142,4 +238,4 @@
     }
 </script>
 </body>
-</html>
+</html>--%>

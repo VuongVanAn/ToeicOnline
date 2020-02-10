@@ -5,6 +5,29 @@
         </div>
         <div class="account_desc">
             <ul>
+                <c:if test="">
+                    <li>Xin chao: </li>
+
+                    <li><a href=""></a></li>
+                </c:if>
+                <c:if test="">
+
+                    <li><a href=""></a></li>
+                </c:if>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<%--
+<div class="header">
+    <div class="headertop_desc">
+        <div class="call">
+            <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></p>
+        </div>
+        <div class="account_desc">
+            <ul>
                 <c:if test="${not empty login_name}">
                     <li>Xin chao: ${login_name}</li>
                     <c:url var="logoutUrl" value="/logout.html">
@@ -22,4 +45,4 @@
         </div>
         <div class="clear"></div>
     </div>
-</div>
+</div>--%>
