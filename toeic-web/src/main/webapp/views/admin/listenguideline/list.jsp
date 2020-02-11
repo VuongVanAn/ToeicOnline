@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="" value=""/>
+<c:url var="requestUrl" value="/admin-guideline-listen-list.html"/>
 <c:url value="" var="listenGuidelineEditUrl">
     <c:param name="urlType" value="url_edit"/>
 </c:url>
