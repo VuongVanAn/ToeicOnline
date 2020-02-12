@@ -88,6 +88,17 @@
     </div>
 </div>
 <script>
+    var arr = [1,4,5,8];
+    $(document).ready(function () {
+        showInfo();
+    });
+
+    function showInfo() {
+        $each(arr, function (index, value) {
+            console.log("Value: "+value+", index: "+index);
+        })
+    }
+    
 
 </script>
 </body>
