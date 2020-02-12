@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<c:url var="formUrl" value="/admin-guideline-listen-edit.html" />
 <html>
 <head>
     <title></title>
@@ -36,7 +37,7 @@
 
                         </div>
                     </c:if>
-                    <form action="" method="" enctype="multipart/form-data" id="formEdit">
+                    <form action="${formUrl}" method="post" enctype="multipart/form-data" id="formEdit">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"></label>
                             <div class="col-sm-9">
@@ -88,7 +89,15 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        findAllClick();
+    });
 
+    function findAllClick() {
+        $(button).click(function () {
+            $(p).hide();
+        });
+    }
 </script>
 </body>
 </html>
