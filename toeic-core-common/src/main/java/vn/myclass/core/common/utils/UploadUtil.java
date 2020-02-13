@@ -17,8 +17,8 @@ import java.util.Set;
 
 public class UploadUtil {
     private final Logger log = Logger.getLogger(this.getClass());
-    private final int maxMemorySize = 1024 * 1024 * 3; //3MBl
-    private final int maxRequestSize = 1024 * 1024 * 50; //50 MB
+    public final int maxMemorySize = 1024 * 1024 * 3; //3MB
+    public final int maxRequestSize = 1024 * 1024 * 50; //50 MB
 
     public Object[] writeOrUpdateFile(HttpServletRequest request, Set<String> titleValue, String path) {
         ServletContext context = request.getServletContext();

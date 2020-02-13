@@ -89,15 +89,7 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        findAllClick();
-    });
 
-    function findAllClick() {
-        $(button).click(function () {
-            $(p).hide();
-        });
-    }
 </script>
 </body>
 </html>

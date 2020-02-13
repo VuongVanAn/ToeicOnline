@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="" value="">
+<c:url var="editUserUrl" value="/ajax-admin-user-edit.html">
     <c:param name="urlType" value="url_edit"/>
 </c:url>
 <c:url var="" value="">
@@ -32,15 +32,15 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
-                    <c:if test="${not empty messageResponse}">
+                    <%--<c:if test="${not empty messageResponse}">
                         <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
                                 ${messageResponse}
                         </div>
-                    </c:if>
-                    <form action="${listUserUrl}" method="get" id="formUrl">
+                    </c:if>--%>
+                    <form action="" method="get" id="formUrl">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="table-btn-controls">
@@ -77,7 +77,7 @@
 												        <input type='checkbox' id='checkAll' class='check-box-element'>
 												        </fieldset>" class="center select-cell" headerClass="center select-cell">
                                     <fieldset>
-                                        <input type="checkbox" name="checkList" id="checkbox_" value="" class="check-box-element"/>
+                                        <input type="checkbox" name="checkList" id="checkbox_${tableList.userId}" value="${tableList.userId}" class="check-box-element"/>
                                     </fieldset>
                                 </display:column>
                                 <display:column property="name" titleKey="label.user.name" sortable="true" sortName="name"/>
@@ -102,8 +102,18 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="" role="dialog"></div>
+<div class="modal fade" id="myModal" role="dialog"></div>
 <script>
+    $(document).ready(function () {
+        update();
+    });
+
+    function update() {
+        var editUser = '${editUserUrl}';
+        $('#myModal').load(editUser, '', function () {
+            $('#myModal').modal('toggle');
+        })
+    }
 
 </script>
 </body>

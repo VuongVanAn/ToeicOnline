@@ -1,5 +1,7 @@
 package vn.myclass.core.web.command;
 
+import vn.myclass.core.dto.UserDTO;
+
 import java.util.List;
 
 public class AbstractCommand<T> {
