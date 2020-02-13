@@ -24,11 +24,12 @@ public class LoginController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getRequestDispatcher("/views/web/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserCommand command = FormUtil.populate(UserCommand.class, request);
+       UserCommand command = FormUtil.populate(UserCommand.class, request);
         UserDTO pojo = command.getPojo();
         if(pojo != null) {
             CheckLogin login = SingletonServiceUtil.getUserServiceInstance().checkLogin(pojo.getName(), pojo.getPassword());
