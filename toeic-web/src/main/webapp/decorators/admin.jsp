@@ -7,6 +7,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><dec:title default="Admin Page" /></title>
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/font1.css' />" />
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/font2.css' />" />
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/font3.css' />" />
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/font4.css' />" />
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/font5.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/font-awesome/4.5.0/css/font-awesome.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/ace.min.css' />" class="ace-main-stylesheet" id="main-ace-style" />
@@ -37,33 +42,24 @@
 </head>
 <body class="no-skin">
 
-<!-- Header -->
 <%@ include file="/common/admin/header.jsp" %>
-<!-- End Header -->
 
 <div class="main-container ace-save-state" id="main-container">
-
     <script type="text/javascript">
         try{ace.settings.loadState('main-container')}catch(e){}
     </script>
 
-    <!-- Begin menu -->
     <%@ include file="/common/admin/menu.jsp" %>
-    <!-- End menu -->
-
 
     <!-- Begin body -->
     <dec:body/>
     <!-- End body -->
 
-    <!-- Begin footer -->
     <%@ include file="/common/admin/footer.jsp" %>
-    <!-- end footer -->
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
-
 </div>
 <!-- /.main-container -->
 
