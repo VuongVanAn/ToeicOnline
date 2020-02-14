@@ -3,7 +3,7 @@
 <c:url var="editUserUrl" value="/ajax-admin-user-edit.html">
     <c:param name="urlType" value="url_edit"/>
 </c:url>
-<c:url var="" value="">
+<c:url var="listUserUrl" value="/admin-user-list.html">
     <c:param name="urlType" value="url_list"/>
 </c:url>
 <c:url var="" value="">
@@ -32,15 +32,15 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
-                    <%--<c:if test="${not empty messageResponse}">
+                    <c:if test="${not empty messageResponse}">
                         <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
                                 ${messageResponse}
                         </div>
-                    </c:if>--%>
-                    <form action="" method="get" id="formUrl">
+                    </c:if>
+                    <form action="${listUserUrl}" method="get" id="formUrl">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="table-btn-controls">
@@ -105,14 +105,51 @@
 <div class="modal fade" id="myModal" role="dialog"></div>
 <script>
     $(document).ready(function () {
-        update();
+
     });
 
-    function update() {
-        var editUser = '${editUserUrl}';
-        $('#myModal').load(editUser, '', function () {
+    function update(btn) {
+        var editUrl = $(btn).attr('sc-url');
+        if(typeof url == 'undefined') {
+            editUrl = $('editUserUrl');
+        }
+        $('#myModal').load(editUrl, '', function () {
             $('#myModal').modal('toggle');
         })
+    }
+
+    function updateOrEditUser() {
+        $('#btnSave').click(function () {
+            $('#editUserForm').submit();
+        });
+        $('#editUserForm').submit(function (e) {
+            e.preventDefault();
+            $('#crudactionEdit').val('insert_update');
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'html',
+                success:function (res) {
+                    if(res.trim() == "redirect_insert") {
+                        $('#crudaction').val('redirect_insert');
+                        $('#urlType').val('url_list');
+                        $('#formUrl').submit();
+                    } else if(res.trim() == "redirect_update") {
+                        $('#crudaction').val('redirect_update');
+                        $('#urlType').val('url_list');
+                        $('#formUrl').submit();
+                    } else if(res.trim() == "redirect_error") {
+                        $('#crudaction').val('redirect_error');
+                        $('#urlType').val('url_list');
+                        $('#formUrl').submit();
+                    }
+                },
+                error:function (res) {
+                    console.log(res);
+                }
+            });
+        });
     }
 
 </script>

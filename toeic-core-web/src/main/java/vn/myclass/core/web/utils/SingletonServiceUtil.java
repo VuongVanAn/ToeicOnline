@@ -1,18 +1,17 @@
 package vn.myclass.core.web.utils;
 
-import vn.myclass.core.service.impl.RoleServiceImpl;
-import vn.myclass.core.service.impl.UserServiceImpl;
+import vn.myclass.core.service.impl.*;
 
 public class SingletonServiceUtil {
     private static UserServiceImpl userServiceImpl = null;
     private static RoleServiceImpl roleServiceImpl = null;
-   /* private static ListenGuidelineServiceImpl listenGuidelineServiceImpl = null;
+    private static ListenGuidelineServiceImpl listenGuidelineServiceImpl = null;
     private static CommentServiceImpl commentServiceImpl = null;
     private static ExaminationQuestionServiceImpl examinationQuestionServiceImpl = null;
     private static ExaminationServiceImpl examinationServiceImpl = null;
     private static ExerciseQuestionServiceImpl exerciseQuestionServiceImpl = null;
     private static ExerciseServiceImpl exerciseServiceImpl = null;
-    private static ResultServiceImpl resultServiceImpl = null;*/
+    private static ResultServiceImpl resultServiceImpl = null;
 
     public static UserServiceImpl getUserServiceInstance() {
         if (userServiceImpl == null) {
@@ -28,7 +27,7 @@ public class SingletonServiceUtil {
         return roleServiceImpl;
     }
 
-   /* public static ListenGuidelineServiceImpl getListenGuidelineServiceInstance() {
+    public static ListenGuidelineServiceImpl getListenGuidelineServiceInstance() {
         if (listenGuidelineServiceImpl == null) {
             listenGuidelineServiceImpl = new ListenGuidelineServiceImpl();
         }
@@ -75,5 +74,5 @@ public class SingletonServiceUtil {
             resultServiceImpl = new ResultServiceImpl();
         }
         return resultServiceImpl;
-    }*/
+    }
 }

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="" value="">
+<c:url var="editUserUrl" value="/ajax-admin-user-edit.html">
     <c:param name="urlType" value="url_edit"/>
 </c:url>
 <c:choose>
@@ -47,12 +47,12 @@
                             <div class="col-md-12">
                                 <div class="md-form">
                                     <c:choose>
-                                        <c:when test="${}">
-                                            <select id="" name="">
-                                                <option value="">${}</option>
-                                                <c:forEach items="" var="">
-                                                    <c:if test="">
-                                                        <option value=""></option>
+                                        <c:when test="${not empty item.pojo.userId}">
+                                            <select id="role" name="roleId">
+                                                <option value="${item.pojo.roleDTO.roleId}">${item.pojo.roleDTO.name}</option>
+                                                <c:forEach items="${item.roles}" var="itemRole">
+                                                    <c:if test="${itemRole.roleId != item.pojo.roleDTO.roleId}">
+                                                        <option value="${itemRole.roleId}">${itemRole.name}</option>
                                                     </c:if>
                                                 </c:forEach>
                                             </select>
@@ -60,8 +60,8 @@
                                         <c:otherwise>
                                             <select id="role" name="roleId">
                                                 <option value="-1"><fmt:message key="label.option.role" bundle="${lang}"/></option>
-                                                <c:forEach items="" var="itemRole">
-                                                    <option value=""></option>
+                                                <c:forEach items="${item.roles}" var="itemRole">
+                                                    <option value="${itemRole.roleId}">${itemRole.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </c:otherwise>
@@ -70,10 +70,10 @@
                             </div>
                         </div>
                     </div>
-                    <c:if test="">
-                        <input type="hidden" name="" value=""/>
+                    <c:if test="${not empty item.pojo.userId}">
+                        <input type="hidden" name="pojo.userId" value="${item.pojo.userId}"/>
                     </c:if>
-                    <input type="hidden" name="" id=""/>
+                    <input type="hidden" name="crudaction" id="crudactionEdit"/>
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="label.close" bundle="${lang}"/></button>

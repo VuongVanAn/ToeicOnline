@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/login.html"})
 public class LoginController extends HttpServlet {
-
     ResourceBundle bundle = ResourceBundle.getBundle("ResourcesBundle");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
