@@ -6,7 +6,7 @@
 <c:url var="listUserUrl" value="/admin-user-list.html">
     <c:param name="urlType" value="url_list"/>
 </c:url>
-<c:url var="" value="">
+<c:url var="importUrl" value="/admin-user-import.html">
     <c:param name="urlType" value="show_import_user"/>
 </c:url>
 <html>
@@ -83,9 +83,9 @@
                                 <display:column property="name" titleKey="label.user.name" sortable="true" sortName="name"/>
                                 <display:column property="fullName" titleKey="label.user.fullname" sortable="true" sortName="fullName"/>
                                 <display:column headerClass="col-actions" titleKey="label.action">
-                                    <c:url var="" value="">
+                                    <c:url var="editUrl" value="/ajax-admin-user-edit.html">
                                         <c:param name="urlType" value="url_edit"/>
-                                        <c:param name="" value=""/>
+                                        <c:param name="pojo.userId" value="${tableList.userId}"/>
                                     </c:url>
                                     <a class="btn btn-sm btn-primary btn-edit" sc-url="${editUrl}" onclick="update(this)" data-toggle="tooltip" title="<fmt:message key='label.user.edit' bundle='${lang}'/>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                     <a class="btn btn-sm btn-danger btn-cancel" data-toggle="tooltip" title="<fmt:message key='label.user.delete' bundle='${lang}'/>"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -107,18 +107,17 @@
     $(document).ready(function () {
 
     });
-
     function update(btn) {
         var editUrl = $(btn).attr('sc-url');
-        if(typeof url == 'undefined') {
-            editUrl = $('editUserUrl');
+        if (typeof editUrl == 'undefined') {
+            editUrl = '${editUserUrl}';
         }
-        $('#myModal').load(editUrl, '', function () {
+        $('#myModal').load(editUrl,'', function () {
             $('#myModal').modal('toggle');
-        })
+            addOrEditUser();
+        });
     }
-
-    function updateOrEditUser() {
+    function addOrEditUser() {
         $('#btnSave').click(function () {
             $('#editUserForm').submit();
         });
@@ -130,28 +129,27 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'html',
-                success:function (res) {
-                    if(res.trim() == "redirect_insert") {
+                success: function(res){
+                    if (res.trim() == "redirect_insert") {
                         $('#crudaction').val('redirect_insert');
                         $('#urlType').val('url_list');
                         $('#formUrl').submit();
-                    } else if(res.trim() == "redirect_update") {
+                    } else if (res.trim() == "redirect_update") {
                         $('#crudaction').val('redirect_update');
                         $('#urlType').val('url_list');
                         $('#formUrl').submit();
-                    } else if(res.trim() == "redirect_error") {
+                    } else if (res.trim() == "redirect_error") {
                         $('#crudaction').val('redirect_error');
                         $('#urlType').val('url_list');
                         $('#formUrl').submit();
                     }
                 },
-                error:function (res) {
+                error: function (res) {
                     console.log(res);
                 }
             });
         });
     }
-
 </script>
 </body>
 </html>

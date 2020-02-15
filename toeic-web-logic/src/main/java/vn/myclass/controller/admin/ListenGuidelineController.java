@@ -22,7 +22,6 @@ public class ListenGuidelineController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("ResourceBundle");
        /* ListenGuidelineCommand command = new ListenGuidelineCommand();
         command.setMaxPageItems(2);
         requestUtil.initSearchBean(request, command);

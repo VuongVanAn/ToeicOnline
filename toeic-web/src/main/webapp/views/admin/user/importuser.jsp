@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="" value=""/>
-<c:url var="" value=""/>
+<c:url var="validateExcel" value="/admin-user-import-validate.html"/>
+<c:url var="importExcel" value="/admin-user-import.html"/>
 <html>
 <head>
     <title><fmt:message key="label.user.import.excel" bundle="${lang}"/></title>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <c:if test="${}">
+                        <c:if test="${not empty items.userImportDTOS}">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="table-responsive">
@@ -69,7 +69,7 @@
                                 <fmt:message key="label.user.import" bundle="${lang}"/>
                             </button>
                         </c:if>
-                        <input type="hidden" name="" id=""/>
+                        <input type="hidden" name="urlType" id="urlType"/>
                     </form>
                 </div>
             </div>
@@ -77,7 +77,11 @@
     </div>
 </div>
 <script>
-
+    $(document).ready(function () {
+        $('#validateData').click(function () {
+            $('#formImport').submit();
+        })
+    })
 </script>
 </body>
 </html>

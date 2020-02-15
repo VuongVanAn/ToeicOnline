@@ -4,6 +4,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -47,7 +48,7 @@ public class UploadUtil {
             List<FileItem> items = upload.parseRequest(request);
             for(FileItem item : items) {
                 if(!item.isFormField()){
-                    String fileName = item.getName();
+                    String fileName = FilenameUtils.getName(item.getName());
                     if(StringUtils.isNotBlank(fileName)){
 
                     }
@@ -57,16 +58,14 @@ public class UploadUtil {
                     boolean isExist = uploadFile.exists();
                     try {
                         if(isExist) {
-                            if(uploadFile.delete()) {
-                                item.write(uploadFile);
-                            } else {
-                                check = false;
-                            }
+                            uploadFile.delete();
+                            item.write(uploadFile);
                         } else {
                             item.write(uploadFile);
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        check = false;
+                        log.error(e.getMessage(), e);
                     }
                 } else {
                     if(titleValue != null) {
@@ -79,7 +78,7 @@ public class UploadUtil {
                 }
             }
         } catch (FileUploadException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
         return new Object[]{check, fileLocation, name, mapReturnValue};
     }

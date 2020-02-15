@@ -2,6 +2,7 @@ package vn.myclass.core.dto;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class UserDTO implements Serializable {
     private Integer userId;
@@ -10,8 +11,8 @@ public class UserDTO implements Serializable {
     private String fullName;
     private Timestamp createdDate;
     private RoleDTO roleDTO;
-    /*private UserImportDTO userImportDTO;
-    private List<ResultDTO> results;*/
+    private UserImportDTO userImportDTO;
+    private List<ResultDTO> results;
 
     public Integer getUserId() {
         return userId;
@@ -61,7 +62,7 @@ public class UserDTO implements Serializable {
         this.roleDTO = roleDTO;
     }
 
-    /*public UserImportDTO getUserImportDTO() {
+    public UserImportDTO getUserImportDTO() {
         return userImportDTO;
     }
 
@@ -75,5 +76,5 @@ public class UserDTO implements Serializable {
 
     public void setResults(List<ResultDTO> results) {
         this.results = results;
-    }*/
+    }
 }
