@@ -68,10 +68,10 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <c:if test="">
-                                    <c:set var="" value=""/>
+                                <c:if test="${not empty item.pojo.content}">
+                                    <c:set var="content" value="${item.pojo.content}"/>
                                 </c:if>
-                                <textarea name="" cols="80" rows="10" id=""></textarea>
+                                <textarea name="pojo.content" cols="80" rows="10" id="listenGuidelineContent">${content}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,7 +89,9 @@
     </div>
 </div>
 <script>
-
+    $(document).ready(function () {
+        CKEDITOR.replace('listenGuidelineContent');
+    })
 </script>
 </body>
 </html>

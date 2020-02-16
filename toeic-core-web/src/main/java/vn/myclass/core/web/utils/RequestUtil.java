@@ -7,7 +7,7 @@ import vn.myclass.core.web.command.AbstractCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class requestUtil {
+public class RequestUtil {
     public static void initSearchBean(HttpServletRequest request, AbstractCommand bean) {
         if(bean != null) {
             String sortExpression = request.getParameter(new ParamEncoder(bean.getTableId()).encodeParameterName(TableTagParameters.PARAMETER_SORT));

@@ -6,7 +6,7 @@ import vn.myclass.core.web.common.WebConstant;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-public class webCommonUtil {
+public class WebCommonUtil {
     public static void addRedirectMessage(HttpServletRequest request, String crudaction, Map<String, String> mapMessage) {
         if (StringUtils.isNotBlank(crudaction) && crudaction.equals(mapMessage.get(WebConstant.REDIRECT_INSERT))) {
             request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_SUCCESS);

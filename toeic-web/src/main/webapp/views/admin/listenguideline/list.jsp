@@ -4,7 +4,7 @@
 <c:url value="" var="listenGuidelineEditUrl">
     <c:param name="urlType" value="url_edit"/>
 </c:url>
-<c:url var="" value=""/>
+<c:url var="formUrl" value="/admin-guideline-listen-list.html"/>
 <html>
 <head>
     <title><fmt:message key="label.guideline.listen.list" bundle="${lang}"/></title>
@@ -56,7 +56,7 @@
                                                     <label class="col-sm-2 control-label"><fmt:message key="label.guideline.listen.title" bundle="${lang}"/></label>
                                                     <div class="col-sm-8">
                                                         <div class="fg-line">
-                                                            <input type="text" value="" class="form-control input-sm" name=""/>
+                                                            <input type="text" value="${items.pojo.title}" class="form-control input-sm" name="pojo.title"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -76,10 +76,10 @@
                                 <div class="table-btn-controls">
                                     <div class="pull-right tableTools-container">
                                         <div class="dt-buttons btn-overlap btn-group">
-                                            <c:url var="" value="">
-                                                <c:param name="" value=""/>
+                                            <c:url var="addUrl" value="/admin-guideline-listen-edit.html">
+                                                <c:param name="urlType" value="url_edit"/>
                                             </c:url>
-                                            <a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" href="${}">
+                                            <a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" href="${addUrl}">
                                                     <span>
                                                         <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                     </span>
@@ -119,8 +119,8 @@
                                 </display:table>
                             </fmt:bundle>
                         </div>
-                        <input type="hidden" name="" id="" value=""/>
-                        <input type="hidden" name="" id=""/>
+                        <%--<input type="hidden" name="" id="" value=""/>--%>
+                        <input type="hidden" name="urlType" id="urlType"/>
                     </form>
                 </div>
             </div>
@@ -128,7 +128,12 @@
     </div>
 </div>
 <script>
-
+    $(document).ready(function () {
+        $('#btnSearch').click(function () {
+            $('#urlType').val('url_list');
+            $('#formUrl').submit();
+        });
+    });
 </script>
 </body>
 </html>

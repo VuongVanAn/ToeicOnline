@@ -88,7 +88,7 @@
             $('#formImport').attr('action', '${importExcel}');
             $('#formImport').submit();
         });
-    })
+    });
 </script>
 </body>
 </html>

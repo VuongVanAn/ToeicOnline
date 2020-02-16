@@ -15,7 +15,7 @@ import vn.myclass.core.dto.UserImportDTO;
 import vn.myclass.core.web.common.WebConstant;
 import vn.myclass.core.web.utils.FormUtil;
 import vn.myclass.core.web.utils.SingletonServiceUtil;
-import vn.myclass.core.web.utils.webCommonUtil;
+import vn.myclass.core.web.utils.WebCommonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +48,7 @@ public class UserController extends HttpServlet {
             request.setAttribute(WebConstant.LIST_ITEMS, command);
             if (command.getCrudaction() != null) {
                 Map<String, String> mapMessage = buildMapRedirectMessage(bundle);
-                webCommonUtil.addRedirectMessage(request, command.getCrudaction(), mapMessage);
+                WebCommonUtil.addRedirectMessage(request, command.getCrudaction(), mapMessage);
             }
             request.getRequestDispatcher("/views/admin/user/list.jsp").forward(request, response);
         } else if (command.getUrlType() != null && command.getUrlType().equals(WebConstant.URL_EDIT)) {
@@ -116,6 +116,7 @@ public class UserController extends HttpServlet {
                     validateData(excelValues);
                     SessionUtil.getInstance().putValue(request, LIST_USER_IMPORT, excelValues);
                     response.sendRedirect("/admin-user-import-validate.html?urlType=validate_import");
+                    return;
                 }
             }
             if (command.getUrlType() != null && command.getUrlType().equals(IMPORT_DATA));
@@ -123,6 +124,7 @@ public class UserController extends HttpServlet {
             SingletonServiceUtil.getUserServiceInstance().saveUserImport(userImportDTOS);
             SessionUtil.getInstance().remove(request, LIST_USER_IMPORT);
             response.sendRedirect("/admin-user-list.html?urlType=url_list");
+            return;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             request.setAttribute(WebConstant.MESSAGE_RESPONSE, WebConstant.REDIRECT_ERROR);
@@ -156,15 +158,15 @@ public class UserController extends HttpServlet {
 
     private void checkRequireField(UserImportDTO item) {
         String message = "";
-        if(StringUtils.isNotBlank(item.getUserName())) {
+        if(StringUtils.isBlank(item.getUserName())) {
             message += "<br/>";
             message += bundle.getString("label.username.notempty");
         }
-        if(StringUtils.isNotBlank(item.getPassword())) {
+        if(StringUtils.isBlank(item.getPassword())) {
             message += "<br/>";
             message += bundle.getString("label.password.notempty");
         }
-        if(StringUtils.isNotBlank(item.getRoleName())) {
+        if(StringUtils.isBlank(item.getRoleName())) {
             message += "<br/>";
             message += bundle.getString("label.rolename.notempty");
         }
