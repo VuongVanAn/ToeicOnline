@@ -8,7 +8,6 @@ import vn.myclass.core.web.common.WebConstant;
 import vn.myclass.core.web.utils.FormUtil;
 import vn.myclass.core.web.utils.SingletonServiceUtil;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,13 +27,13 @@ public class LoginController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       UserCommand command = FormUtil.populate(UserCommand.class, request);
+        UserCommand command = FormUtil.populate(UserCommand.class, request);
         UserDTO pojo = command.getPojo();
-        if(pojo != null) {
+        if (pojo != null) {
             CheckLogin login = SingletonServiceUtil.getUserServiceInstance().checkLogin(pojo.getName(), pojo.getPassword());
-            if(login.isUserExist()){
+            if (login.isUserExist()) {
                 SessionUtil.getInstance().putValue(request, WebConstant.LOGIN_NAME, pojo.getName());
-                if(login.getRoleName().equals(WebConstant.ROLE_ADMIN)) {
+                if (login.getRoleName().equals(WebConstant.ROLE_ADMIN)) {
                     response.sendRedirect("/admin-home.html");
                 } else {
                     response.sendRedirect("/home.html");
@@ -42,8 +41,7 @@ public class LoginController extends HttpServlet {
             } else {
                 request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);
                 request.setAttribute(WebConstant.MESSAGE_RESPONSE, bundle.getString("label.name.password.wrong"));
-                RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
-                rd.forward(request, response);
+                request.getRequestDispatcher("/views/web/login.jsp").forward(request, response);
             }
         }
     }

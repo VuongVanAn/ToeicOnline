@@ -111,19 +111,19 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             i++;
         }
         try {
-            StringBuilder sql1 = new StringBuilder("from ");
+            StringBuilder sql1 = new StringBuilder("FROM ");
             sql1.append(getPersistenceClassName());
             if(property.size() > 0) {
                 for(int i1 = 0; i1 < params.length; i1++){
                     if(i1 == 0){
-                        sql1.append(" where ").append(params[i1]).append("= :"+params[i1]+"");
+                        sql1.append(" WHERE ").append(params[i1]).append("= :"+params[i1]+"");
                     } else {
-                        sql1.append(" and ").append(params[i1]).append("= :"+params[i1]+"");
+                        sql1.append(" AND ").append(params[i1]).append("= :"+params[i1]+"");
                     }
                 }
             }
             if(sortExpression != null && sortDirection != null) {
-                sql1.append(" order by ").append(sortExpression);
+                sql1.append(" ORDER BY ").append(sortExpression);
                 sql1.append(" " +(sortDirection.equals(CoreConstant.SORT_ASC)?"asc":"desc"));
             }
             Query query1 = session.createQuery(sql1.toString());
@@ -139,14 +139,14 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
                 query1.setMaxResults(limit);
             }
             list = query1.list();
-            StringBuilder sql2 = new StringBuilder("select count(*) from ");
+            StringBuilder sql2 = new StringBuilder("SELECT COUNT(*) FROM ");
             sql2.append(getPersistenceClassName());
             if(property.size() > 0) {
                 for(int k = 0; k < params.length; k++){
                     if(k == 0){
-                        sql2.append(" where ").append(params[k]).append("= :"+params[k]+"");
+                        sql2.append(" WHERE ").append(params[k]).append("= :"+params[k]+"");
                     } else {
-                        sql2.append(" and ").append(params[k]).append("= :"+params[k]+"");
+                        sql2.append(" AND ").append(params[k]).append("= :"+params[k]+"");
                     }
                 }
             }
@@ -187,6 +187,26 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             session.close();
         }
         return count;
+    }
+
+    public T findEqualUnique(String property, Object value) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        T result = null;
+        try {
+            String sql = "FROM "+getPersistenceClassName()+" model WHERE model."+property+"= :value";
+            Query query = session.createQuery(sql);
+            query.setParameter("value", value);
+            result = (T) query.uniqueResult();
+            transaction.commit();
+        } catch(HibernateException e){
+            transaction.rollback();
+            log.error(e.getMessage(), e);
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
     }
 
 }

@@ -42,7 +42,6 @@ public class UploadUtil {
         ServletFileUpload upload = new ServletFileUpload(factory);
         // Set overall request size constraint
         upload.setSizeMax(maxRequestSize);
-
         try {
             // Parse the request
             List<FileItem> items = upload.parseRequest(request);
@@ -50,22 +49,21 @@ public class UploadUtil {
                 if(!item.isFormField()){
                     String fileName = FilenameUtils.getName(item.getName());
                     if(StringUtils.isNotBlank(fileName)){
-
-                    }
-                    File uploadFile = new File(address + File.separator + path + File.separator + fileName);
-                    fileLocation = address + File.separator + path + File.separator + fileName;
-                    name = fileName;
-                    boolean isExist = uploadFile.exists();
-                    try {
-                        if(isExist) {
-                            uploadFile.delete();
-                            item.write(uploadFile);
-                        } else {
-                            item.write(uploadFile);
+                        File uploadFile = new File(address + File.separator + path + File.separator + fileName);
+                        fileLocation = address + File.separator + path + File.separator + fileName;
+                        name = fileName;
+                        boolean isExist = uploadFile.exists();
+                        try {
+                            if (isExist) {
+                                uploadFile.delete();
+                                item.write(uploadFile);
+                            } else {
+                                item.write(uploadFile);
+                            }
+                        } catch (Exception e) {
+                            check = false;
+                            log.error(e.getMessage(), e);
                         }
-                    } catch (Exception e) {
-                        check = false;
-                        log.error(e.getMessage(), e);
                     }
                 } else {
                     if(titleValue != null) {

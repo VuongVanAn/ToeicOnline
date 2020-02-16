@@ -80,7 +80,9 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UploadUtil uploadUtil = new UploadUtil();
-        Object[] objects = uploadUtil.writeOrUpdateFile(request,null,"excel");
+        Set<String> value = new HashSet<String>();
+        value.add("urlType");
+        Object[] objects = uploadUtil.writeOrUpdateFile(request,value,"excel");
         try {
             UserCommand command = FormUtil.populate(UserCommand.class, request);
             UserDTO pojo = command.getPojo();
@@ -116,6 +118,11 @@ public class UserController extends HttpServlet {
                     response.sendRedirect("/admin-user-import-validate.html?urlType=validate_import");
                 }
             }
+            if (command.getUrlType() != null && command.getUrlType().equals(IMPORT_DATA));
+            List<UserImportDTO> userImportDTOS = (List<UserImportDTO>)SessionUtil.getInstance().getValue(request, LIST_USER_IMPORT);
+            SingletonServiceUtil.getUserServiceInstance().saveUserImport(userImportDTOS);
+            SessionUtil.getInstance().remove(request, LIST_USER_IMPORT);
+            response.sendRedirect("/admin-user-list.html?urlType=url_list");
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             request.setAttribute(WebConstant.MESSAGE_RESPONSE, WebConstant.REDIRECT_ERROR);
@@ -128,6 +135,7 @@ public class UserController extends HttpServlet {
             checkRequireField(item);
             validateDuplicate(item, stringSet);
         }
+        SingletonServiceUtil.getUserServiceInstance().validateImportUser(excelValues);
     }
 
     private void validateDuplicate(UserImportDTO item, Set<String> stringSet) {

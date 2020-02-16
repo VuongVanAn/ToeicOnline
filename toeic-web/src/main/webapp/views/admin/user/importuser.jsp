@@ -79,8 +79,15 @@
 <script>
     $(document).ready(function () {
         $('#validateData').click(function () {
+            $('#urlType').val('read_excel');
             $('#formImport').submit();
-        })
+        });
+        $('#importData').click(function () {
+            $('#urlType').val('import_data');
+            $('#formImport').prop('enctype', false);
+            $('#formImport').attr('action', '${importExcel}');
+            $('#formImport').submit();
+        });
     })
 </script>
 </body>
