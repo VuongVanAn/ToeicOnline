@@ -75,7 +75,7 @@ public class ListenGuidelineController extends HttpServlet {
     private Map<String, Object> buildMapProperties(ListenGuidelineCommand command) {
         Map<String, Object> properties = new HashMap<String, Object>();
         if (StringUtils.isNotBlank(command.getPojo().getTitle())) {
-            properties.put("title", command.getPojo());
+            properties.put("title", command.getPojo().getTitle());
         }
         return properties;
     }
@@ -135,7 +135,7 @@ public class ListenGuidelineController extends HttpServlet {
             } else if (item.getKey().equals("pojo.content")) {
                 dto.setContent(item.getValue());
             } else if (item.getKey().equals("pojo.listenGuidelineId")) {
-                dto.setListenGuidelineId(Integer.parseInt(item.getValue().toString()));
+                dto.setListenGuidelineId(Integer.parseInt(item.getValue()));
             }
         }
         return dto;
@@ -148,5 +148,4 @@ public class ListenGuidelineController extends HttpServlet {
         returnValue.add("pojo.listenGuidelineId");
         return returnValue;
     }
-
 }

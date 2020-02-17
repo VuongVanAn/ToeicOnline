@@ -130,14 +130,12 @@
 <script>
     $(document).ready(function () {
         $('#btnSearch').click(function () {
-            $('#urlType').val('url_list');
             $('#formUrl').submit();
         });
     });
     
     function warningBeforeDelete() {
         showAlertBeforeDelete(function () {
-            $('#urlType').val('url_list');
             $('#crudaction').val('redirect_detele');
             $('#formUrl').submit();
         });

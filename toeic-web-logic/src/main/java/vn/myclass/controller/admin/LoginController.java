@@ -16,13 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-@WebServlet(urlPatterns = {"/login.html"})
+@WebServlet(urlPatterns = {"/login.html", "/logout.html"})
 public class LoginController extends HttpServlet {
     ResourceBundle bundle = ResourceBundle.getBundle("ResourcesBundle");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/views/web/login.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        if (action.equals(WebConstant.LOGIN)) {
+            request.getRequestDispatcher("/views/web/login.jsp").forward(request, response);
+        } else if (action.equals(WebConstant.LOGOUT)) {
+            SessionUtil.getInstance().remove(request, WebConstant.LOGIN_NAME);
+           response.sendRedirect("/home.html");
+           return;
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,8 +42,10 @@ public class LoginController extends HttpServlet {
                 SessionUtil.getInstance().putValue(request, WebConstant.LOGIN_NAME, pojo.getName());
                 if (login.getRoleName().equals(WebConstant.ROLE_ADMIN)) {
                     response.sendRedirect("/admin-home.html");
+                    return;
                 } else {
                     response.sendRedirect("/home.html");
+                    return;
                 }
             } else {
                 request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);

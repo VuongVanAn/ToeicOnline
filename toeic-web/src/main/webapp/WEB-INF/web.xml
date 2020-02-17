@@ -17,7 +17,7 @@
     </filter-mapping>
     <!-- end sitemesh docarate -->
 
-    <!--<servlet>
+    <servlet>
         <servlet-name>DisplayImage</servlet-name>
         <servlet-class>vn.myclass.controller.DisplayImage</servlet-class>
     </servlet>
@@ -48,7 +48,7 @@
         <url-pattern>
             /ckfinder/core/connector/java/connector.java
         </url-pattern>
-    </servlet-mapping>-->
+    </servlet-mapping>
 
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>

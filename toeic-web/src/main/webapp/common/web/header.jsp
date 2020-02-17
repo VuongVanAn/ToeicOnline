@@ -25,14 +25,18 @@
                                     </ul>
                                 </li>
                                 <li><a href="service.html">Services</a></li>
-                                <c:if test="">
-                                    <li>Xin chao: </li>
-
-                                    <li><a href=""></a></li>
+                                <c:if test="${not empty login_name}">
+                                    <li>Welcome: ${login_name}</li>
+                                    <c:url var="logoutUrl" value="/logout.html">
+                                        <c:param name="action" value="logout"/>
+                                    </c:url>
+                                    <li><a href="${logoutUrl}"><fmt:message key ="label.logout" bundle="${lang}"/></a></li>
                                 </c:if>
-                                <c:if test="">
-
-                                    <li><a href=""></a></li>
+                                <c:if test="${empty login_name}">
+                                    <c:url var="loginUrl" value="/login.html">
+                                        <c:param name="action" value="login"/>
+                                    </c:url>
+                                    <li><a href="${loginUrl}"><fmt:message key ="label.login" bundle="${lang}"/></a></li>
                                 </c:if>
                             </ul>
                         </div>

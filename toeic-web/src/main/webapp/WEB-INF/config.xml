@@ -1,39 +1,39 @@
-<!--<config>
-	&lt;!&ndash;
+<config>
+	<!--
 	CKFinder : Configuration File - Basic Instructions
-	
+
 	In a generic usage case, the following tasks must be done to configure CKFinder:
 	1. Check the baseDir and baseUrl options;
 	2. If available, paste your license key in the "licenseKey" setting;
 	3. Enable CKFinder using the "enabled" setting.
 
-	WARNING : DO NOT simply set "enabled" to "true" on a production site. By doing so, you 
+	WARNING : DO NOT simply set "enabled" to "true" on a production site. By doing so, you
 	are allowing "anyone" to upload and list the files in your server. You must implement
 	some kind of session validation.
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/Extending
-	&ndash;&gt;
+	-->
 	<enabled>true</enabled>
-	&lt;!&ndash;
+	<!--
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
-	&ndash;&gt;
+	-->
 	<baseDir>/CKFinderJava</baseDir>
-	&lt;!&ndash;<baseURL>/CKFinderJava/userfiles/</baseURL>&ndash;&gt;
+	<!--<baseURL>/CKFinderJava/userfiles/</baseURL>-->
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
-	&lt;!&ndash;
+	<!--
 	Set the maximum size of uploaded images. If an uploaded image is larger, it
 	gets scaled down proportionally. Set to 0 to disable this feature.
-	&ndash;&gt;
+	-->
 	<imgWidth>1600</imgWidth>
 	<imgHeight>1200</imgHeight>
 	<imgQuality>80</imgQuality>
-	&lt;!&ndash;
+	<!--
 	See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/URI_Encoding
-	&ndash;&gt;
+	-->
 	<uriEncoding>UTF-8</uriEncoding>
-	&lt;!&ndash;
+	<!--
 	ResourceType : defines the "resource types" handled in CKFinder. A resource
 	type is nothing more than a way to group files under different paths, each one
 	having different configuration settings.
@@ -51,11 +51,11 @@
 	Example: 'maxSize' => "8M",
 
 	==============================================================================
-	ATTENTION: Flash files with `swf' extension, just like HTML files, can be used 
-	to execute JavaScript code and to e.g. perform an XSS attack. Grant permission 
+	ATTENTION: Flash files with `swf' extension, just like HTML files, can be used
+	to execute JavaScript code and to e.g. perform an XSS attack. Grant permission
 	to upload `.swf` files only if you understand and can accept this risk.
 	==============================================================================
-	&ndash;&gt;
+	-->
 	<defaultResourceTypes></defaultResourceTypes>
 	<types>
 		<type name="Files">
@@ -81,11 +81,11 @@
 			<deniedExtensions></deniedExtensions>
 		</type>
 	</types>
-	&lt;!&ndash;
+	<!--
 	The session variable name that CKFinder must use to retrieve
 	the "role" of the current user. The "role", can be used in the "accessControls"
 	settings (bellow).
-	&ndash;&gt;
+	-->
 	<userRoleSessionVar>CKFinder_UserRole</userRoleSessionVar>
 	<accessControls>
 		<accessControl>
@@ -111,13 +111,13 @@
 		<maxWidth>100</maxWidth>
 		<quality>80</quality>
 	</thumbs>
-	&lt;!&ndash;
+	<!--
 	Increases the security on an IIS web server.
-	If enabled, CKFinder will disallow creating folders and uploading files whose names contain characters 
+	If enabled, CKFinder will disallow creating folders and uploading files whose names contain characters
 	that are not safe under an IIS web server.
-	&ndash;&gt;
+	-->
 	<disallowUnsafeCharacters>false</disallowUnsafeCharacters>
-	&lt;!&ndash;
+	<!--
 	Due to security issues with Apache modules, it is recommended to leave the
 	following setting enabled.
 
@@ -136,51 +136,51 @@
 	If CheckDoubleExtension is enabled, each part of the file name after a dot is
 	checked, not only the last part. In this way, uploading foo.php.rar would be
 	denied, because "php" is on the denied extensions list.
-	&ndash;&gt;
+	-->
 	<checkDoubleExtension>true</checkDoubleExtension>
-	&lt;!&ndash;
+	<!--
 	Indicates that the file size (maxSize) for images must be checked only
 	after scaling them. Otherwise, it is checked right after uploading.
-	&ndash;&gt;
+	-->
 	<checkSizeAfterScaling>true</checkSizeAfterScaling>
-	&lt;!&ndash;
+	<!--
 	Perform additional checks for image files
 	if set to true, validate image size
-	&ndash;&gt;
+	-->
 	<secureImageUploads>true</secureImageUploads>
-	&lt;!&ndash;
+	<!--
 	For security, HTML is allowed in the first Kb of data for files having the
 	following extensions only.
-	&ndash;&gt;
+	-->
 	<htmlExtensions>html,htm,xml,js</htmlExtensions>
-	&lt;!&ndash;
-	Force ASCII names for files and folders. If enabled, characters with diactric 
+	<!--
+	Force ASCII names for files and folders. If enabled, characters with diactric
 	marks will be automatically converted to ASCII letters.
-	&ndash;&gt;
+	-->
 	<forceASCII>false</forceASCII>
-	&lt;!&ndash;
+	<!--
 	Enables protection in the connector.
 	The default CSRF protection mechanism is based on double submit cookies, where
 	connector checks if the request contains a valid token that matches the token
 	sent in the cookie
 	https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet#Double_Submit_Cookies
-	&ndash;&gt;
+	-->
 	<enableCsrfProtection>true</enableCsrfProtection>
-	&lt;!&ndash;
+	<!--
 	Folders to not display in CKFinder, no matter their location.
 	No paths are accepted, only the folder name.
 	The * and ? wildcards are accepted.
 	".*" disallows the creation of folders starting with a dot character.
-	&ndash;&gt;
+	-->
 	<hideFolders>
 		<folder>.*</folder>
 		<folder>CVS</folder>
 	</hideFolders>
-	&lt;!&ndash;
+	<!--
 	Files to not display/upload in CKFinder, no matter their location.
 	No paths are accepted, only the file name, including extension.
 	The * and ? wildcards are accepted.
-	&ndash;&gt;
+	-->
 	<hideFiles>
 		<file>.*</file>
 	</hideFiles>
@@ -199,9 +199,9 @@
 			<class>com.ckfinder.connector.plugins.FileEditor</class>
 			<params></params>
 		</plugin>
-		&lt;!&ndash; Before enabling the watermark plugin make sure to specify path to source image &ndash;&gt;
-		&lt;!&ndash; The "internal" flag informs CKFinder that watermark is a pure server side plugin &ndash;&gt;
-		&lt;!&ndash;
+		<!-- Before enabling the watermark plugin make sure to specify path to source image -->
+		<!-- The "internal" flag informs CKFinder that watermark is a pure server side plugin -->
+		<!--
 		<plugin>
 			<name>watermark</name>
 			<class>com.ckfinder.connector.plugins.Watermark</class>
@@ -214,7 +214,7 @@
 			</params>
 			<internal>true</internal>
 		</plugin>
-		&ndash;&gt;
+		-->
 	</plugins>
 	<basePathBuilderImpl>com.ckfinder.connector.configuration.ConfigurationPathBuilder</basePathBuilderImpl>
-</config>-->
+</config>
