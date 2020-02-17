@@ -1,4 +1,8 @@
 package vn.myclass.core.daoimpl;
 
-public class ExaminationQuestionDaoImpl {
+import vn.myclass.core.dao.ExaminationQuestionDao;
+import vn.myclass.core.data.daoimpl.AbstractDao;
+import vn.myclass.core.persistence.entity.ExaminationQuestionEntity;
+
+public class ExaminationQuestionDaoImpl extends AbstractDao<Integer, ExaminationQuestionEntity> implements ExaminationQuestionDao {
 }

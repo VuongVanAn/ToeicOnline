@@ -1,4 +1,6 @@
 package vn.myclass.core.service.impl;
 
-public class CommentServiceImpl {
+import vn.myclass.core.service.CommentService;
+
+public class CommentServiceImpl implements CommentService {
 }

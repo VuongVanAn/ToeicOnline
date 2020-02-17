@@ -1,4 +1,7 @@
 package vn.myclass.core.dao;
 
-public interface ExaminationQuestionDao {
+import vn.myclass.core.data.dao.GenericDao;
+import vn.myclass.core.persistence.entity.ExaminationQuestionEntity;
+
+public interface ExaminationQuestionDao extends GenericDao<Integer, ExaminationQuestionEntity> {
 }
