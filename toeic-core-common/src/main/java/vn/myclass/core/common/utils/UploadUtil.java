@@ -47,11 +47,10 @@ public class UploadUtil {
             List<FileItem> items = upload.parseRequest(request);
             for(FileItem item : items) {
                 if(!item.isFormField()){
-                    String fileName = FilenameUtils.getName(item.getName());
-                    if(StringUtils.isNotBlank(fileName)){
-                        File uploadFile = new File(address + File.separator + path + File.separator + fileName);
-                        fileLocation = address + File.separator + path + File.separator + fileName;
-                        name = fileName;
+                    name = FilenameUtils.getName(item.getName());
+                    if(StringUtils.isNotBlank(name)){
+                        File uploadFile = new File(address + File.separator + path + File.separator + name);
+                        fileLocation = address + File.separator + path + File.separator + name;
                         boolean isExist = uploadFile.exists();
                         try {
                             if (isExist) {

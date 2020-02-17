@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/admin-guideline-listen-edit.html" />
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="label.guideline.listen.edit" bundle="${lang}"/></title>
     <style>
         .error{
             color: red;
@@ -39,48 +39,48 @@
                     </c:if>
                     <form action="${formUrl}" method="post" enctype="multipart/form-data" id="formEdit">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"></label>
+                            <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/></label>
                             <div class="col-sm-9">
-                                <input type="text" name="" id="" value=""/>
+                                <input type="text" name="pojo.title" id="title" value="${item.pojo.title}"/>
                             </div>
                         </div>
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"></label>
-                                <input type="file" name="file" id=""/>
+                            <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.grammarguideline.upload.image" bundle="${lang}"/></label>
+                                <input type="file" name="file" id="uploadImage"/>
                             </div>
                         </div>
                         <br/>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"></label>
                             <div class="col-sm-9">
-                                <c:if test="">
-                                    <c:set var="" value=""/>
+                                <c:if test="${not empty item.pojo.image}">
+                                    <c:set var="image" value="/fileupload/listenguideline/${item.pojo.image}"/>
                                 </c:if>
-                                <img src="" id="" width="150px" height="150ox">
+                                <img src="${image}" id="viewImage" width="150px" height="150ox">
                             </div>
                         </div>
                         <br/>
                         <br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"></label>
+                            <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.content" bundle="${lang}"/></label>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-12">
+                            <div class="col-sm-9">
                                 <c:if test="${not empty item.pojo.content}">
                                     <c:set var="content" value="${item.pojo.content}"/>
                                 </c:if>
-                                <textarea name="pojo.content" cols="80" rows="10" id="listenGuidelineContent">${content}</textarea>
+                                <textarea name="pojo.content" id="listenGuidelineContent" style="width: 820px;height: 175px">${content}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="submit" class="btn btn-white btn-warning btn-bold" value=""/>"/>
+                                <input type="submit" class="btn btn-white btn-warning btn-bold" value="<fmt:message key="label.done" bundle="${lang}"/>"/>"/>
                             </div>
                         </div>
-                        <c:if test="">
-                            <input type="" name="" value=""/>
+                        <c:if test="${not empty item.pojo.listenGuidelineId}">
+                            <input type="hidden" name="pojo.listenGuidelineId" value="${item.pojo.listenGuidelineId}"/>
                         </c:if>
                     </form>
                 </div>
@@ -88,11 +88,58 @@
         </div>
     </div>
 </div>
-<script>
+ <script>
+     var listenGuidelineId = '';
+     <c:if test = "${ not empty item.pojo.listenGuidelineId}">
+     listenGuidelineId = ${item.pojo.listenGuidelineId};
+     </c:if>
     $(document).ready(function () {
         CKEDITOR.replace('listenGuidelineContent');
-    })
-</script>
+        validateData();
+        $('#uploadImage').change(function () {
+            readURL(this, "viewImage");
+        });
+    });
+
+    function validateData() {
+        $('#formEdit').validate({
+            ignore: [],
+            rules: [],
+            messages: []
+        });
+        $('#title').rules('add', {
+            required: true,
+            messages: {
+                required: <fmt:message key="label.empty" bundle="${lang}"/>
+            }
+        });
+        if (listenGuidelineId == '') {
+            $('#uploadImage').rules('add', {
+                required: true,
+                messages: {
+                    required: <fmt:message key="label.empty" bundle="${lang}"/>
+                }
+            });
+        }
+        $('#listenGuidelineContent').rules('add', {
+            required: function () {
+                CKEDITOR.instance.listenGuidelineContent.updateElement();
+            },
+            messages: {
+                required: <fmt:message key="label.empty" bundle="${lang}"/>
+            }
+        });
+    }
+    function readURL(input, imageId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#' +imageId).attr('src', reader.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+ </script>
 </body>
 </html>
 

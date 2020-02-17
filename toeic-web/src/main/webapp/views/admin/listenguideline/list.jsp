@@ -105,22 +105,22 @@
                                                             <input type='checkbox' id='checkAll' class='check-box-element'>
                                                             </fieldset>" class="center select-cell" headerClass="center select-cell">
                                         <fieldset>
-                                            <input type="checkbox" name="checkList" id="" value="" class="check-box-element"/>
+                                            <input type="checkbox" name="checkList" id="checkbox_${tableList.listenGuidelineId}" value="${tableList.listenGuidelineId}" class="check-box-element"/>
                                         </fieldset>
                                     </display:column>
                                     <display:column property="title" titleKey="label.guideline.listen.title" sortable="true" sortName="title"/>
                                     <display:column headerClass="col-actions" titleKey="label.action">
-                                        <c:url var="" value="">
-                                            <c:param name="" value=""/>
-                                            <c:param name="" value=""/>
+                                        <c:url var="editUrl" value="/admin-guideline-listen-edit.html">
+                                            <c:param name="urlType" value="url_edit"/>
+                                            <c:param name="pojo.listenGuidelineId" value="${tableList.listenGuidelineId}"/>
                                         </c:url>
-                                        <a class="btn btn-sm btn-primary btn-edit" href="" data-toggle="tooltip" title="<fmt:message key='label.listenguideline.update' bundle='${lang}'/>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a class="btn btn-sm btn-primary btn-edit" href="${editUrl}" data-toggle="tooltip" title="<fmt:message key='label.listenguideline.update' bundle='${lang}'/>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                     </display:column>
                                 </display:table>
                             </fmt:bundle>
                         </div>
-                        <%--<input type="hidden" name="" id="" value=""/>--%>
-                        <input type="hidden" name="urlType" id="urlType"/>
+                        <input type="hidden" name="urlType" id="urlType" value="url_list"/>
+                        <input type="hidden" name="crudaction" id="crudaction"/>
                     </form>
                 </div>
             </div>
@@ -134,6 +134,14 @@
             $('#formUrl').submit();
         });
     });
+    
+    function warningBeforeDelete() {
+        showAlertBeforeDelete(function () {
+            $('#urlType').val('url_list');
+            $('#crudaction').val('redirect_detele');
+            $('#formUrl').submit();
+        });
+    }
 </script>
 </body>
 </html>
