@@ -23,6 +23,9 @@ public class UserEntity {
     @Column(name = "createddate")
     private Timestamp createdDate;
 
+    @Column(name = "modifieddate")
+    private Timestamp modifiedDate;
+
     @ManyToOne
     @JoinColumn(name = "roleid")
     private RoleEntity roleEntity;
@@ -71,6 +74,14 @@ public class UserEntity {
 
     public void setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public RoleEntity getRoleEntity() {

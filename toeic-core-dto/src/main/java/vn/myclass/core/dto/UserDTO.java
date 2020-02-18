@@ -10,6 +10,7 @@ public class UserDTO implements Serializable {
     private String password;
     private String fullName;
     private Timestamp createdDate;
+    private Timestamp modifiedDate;
     private RoleDTO roleDTO;
     private UserImportDTO userImportDTO;
     private List<ResultDTO> results;
@@ -52,6 +53,14 @@ public class UserDTO implements Serializable {
 
     public void setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public RoleDTO getRoleDTO() {

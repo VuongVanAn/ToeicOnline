@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDTO updateUser(UserDTO userDTO) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        userDTO.setModifiedDate(timestamp);
         UserEntity entity = UserBeanUtil.toEntity(userDTO);
         entity = SingletonDaoUtil.getUserDaoInstance().update(entity);
         userDTO = UserBeanUtil.toDto(entity);
