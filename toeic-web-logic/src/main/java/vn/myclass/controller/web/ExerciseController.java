@@ -1,4 +1,8 @@
 package vn.myclass.controller.web;
 
-public class ExerciseController {
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/danh-sach-bai-tap.html")
+public class ExerciseController extends HttpServlet {
 }

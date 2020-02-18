@@ -3,7 +3,7 @@
 <c:url var="formUrl" value="/login.html"/>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Đăng nhập</title>
 </head>
 <body>
 <div id="login-box" class="login-box visible widget-box no-border">
@@ -11,7 +11,7 @@
         <div class="widget-main">
             <h4 class="header blue lighter bigger">
                 <i class="ace-icon fa fa-coffee green"></i>
-                <fmt:message key="label.test" bundle="${lang}"/>
+                <b>Tài khoản người dùng</b>
             </h4>
             <div class="space-6"></div>
             <form action="${formUrl}" method="post">

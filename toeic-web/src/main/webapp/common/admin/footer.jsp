@@ -5,8 +5,8 @@
     <div class="footer-inner">
         <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2019-2020
+							<span class="blue bolder">Jsp</span>
+							Servlet &copy; 2019-2020
 						</span>
 			&nbsp; &nbsp;
                         <span class="action-buttons">

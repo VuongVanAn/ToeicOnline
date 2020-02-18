@@ -1,4 +1,8 @@
 package vn.myclass.controller.web;
 
-public class ExaminationController {
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/danh-sach-bai-thi.html")
+public class ExaminationController extends HttpServlet {
 }

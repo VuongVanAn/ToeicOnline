@@ -70,7 +70,7 @@
             Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
             aliqua.
         </p>
-        <c:url var="" value="">
+        <c:url var="listExercise" value="/danh-sach-bai-tap.html">
             <c:param name="pojo.type" value="listening"/>
         </c:url>
         <a href="${listExercise}">Read More &rarr;</a>
@@ -82,7 +82,7 @@
         <p>
             Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
         </p>
-        <a href="<c:url value=""/>">Read More &rarr;</a>
+        <a href="<c:url value="/danh-sach-bai-thi.html"/>">Read More &rarr;</a>
     </div>
 </div>
 <!-- /.Feature -->

@@ -24,9 +24,9 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#"><fmt:message key="label.home" bundle="${lang}"/></a>
+                    <a href="#">Trang chủ</a>
                 </li>
-                <li class="active"><fmt:message key="label.user.list" bundle="${lang}"/></li>
+                <li class="active">Danh sách người dùng</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">

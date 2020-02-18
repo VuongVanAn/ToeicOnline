@@ -2,7 +2,7 @@
 <%@ include file="/common/taglib.jsp"%>
 <html>
 <head>
-    <title><dec:title default="Login page"/></title>
+    <title><dec:title default="Login Page"/></title>
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/font-awesome/4.2.0/css/font-awesome.min.css'/>"/>

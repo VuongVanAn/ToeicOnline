@@ -15,7 +15,7 @@
                     <div class="contact-form">
                         <div>
                                 <span>
-                                    <input name="" type="text" class="textbox" value=""/>
+                                    <input name="pojo.title" type="text" class="textbox" value="${items.pojo.title}"/>
                                 </span>
                         </div>
                         <div>
@@ -32,10 +32,10 @@
                         </div>
                         <div class="grid news_desc">
                             <h3>${item.title}</h3>
-                            <c:url value="" var="">
-                                <c:param name="" value="${}"/>
+                            <c:url value="/noi-dung-bai-huong-dan-nghe.html" var="detailUrl">
+                                <c:param name="listenguidelineid" value="${item.listenGuidelineId}"/>
                             </c:url>
-                            <h4><span><a href="${}">Chi tiết bài hướng dẫn</a></span></h4>
+                            <h4><span><a href="${detailUrl}">Chi tiết</a></span></h4>
                         </div>
                     </div>
                 </c:forEach>
@@ -46,8 +46,23 @@
     <input type="hidden" id="page" name="page"/>
 </form>
 <script type="text/javascript">
+    var totalPages = ${items.totalPages};
+    var startPage = ${items.page};
+    var visiblePages = ${items.maxPageItems};
     $(document).ready(function () {
-
+    });
+    $(function () {
+        var obj = $('#pagination-demo').twbsPagination({
+            totalPages: totalPages,
+            startPage: startPage,
+            visiblePages: visiblePages,
+            onPageClick: function (event, page) {
+                if (page != startPage) {
+                    $('#page').val(page);
+                    $('#formUrl').submit();
+                }
+            }
+        });
     });
 </script>
 </body>

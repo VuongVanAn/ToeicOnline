@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
+<c:url var="formUrl" value="/admin-exericse-upload.html"/>
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="lable.exercise.management" bundle="${lang}"/></title>
 </head>
 <body>
 <div class="main-content">
@@ -15,29 +16,29 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#"></a>
+                    <a href="#">Trang chủ</a>
                 </li>
-                <li class="active"></li>
+                <li class="active">Thêm hình ảnh, audio</li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
-                    <c:if test="">
-                        <div class="alert alert-block alert-">
+                    <c:if test="${not empty messageResponse}">
+                        <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
-
+                            ${messageResponse}
                         </div>
                     </c:if>
-                    <form action="" method="" enctype="multipart/form-data">
+                    <form action="${formUrl}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"></label>
+                            <label class="col-sm-3 control-label no-padding-right">Thêm hình ảnh, audio</label>
                             <div class="col-sm-9">
                                 <input type="file" name="file" multiple/>
                                 <br/>
-                                <input type="submit" class="btn btn-white btn-warning btn-bold" value=""/>"/>
+                                <input type="submit" class="btn btn-white btn-warning btn-bold" value="<fmt:message key="label.done" bundle="${lang}"/>"/>"/>
                             </div>
                         </div>
                     </form>

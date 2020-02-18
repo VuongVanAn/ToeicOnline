@@ -53,27 +53,8 @@
 
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-desktop"></i>
-                <span class="menu-text"><fmt:message key="label.guideline.listen" bundle="${lang}"/></span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-                    <a href="${listenGuidelineListUrl}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        <fmt:message key="label.guideline.listen.list" bundle="${lang}"/>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-
-        <li class="">
-            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text"><fmt:message key="label.dashboard" bundle="${lang}"/></span>
+                <span class="menu-text">Quản lý người dùng</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -82,7 +63,26 @@
                 <li class="">
                     <a href="${userListUrl}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        <fmt:message key="label.user.management" bundle="${lang}"/>
+                        Danh sách người dùng
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-desktop"></i>
+                <span class="menu-text">Quản lý HD nghe</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href="${listenGuidelineListUrl}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách HD nghe
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -92,16 +92,16 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil-square-o"></i>
-                <span class="menu-text"><fmt:message key="lable.exercise.management" bundle="${lang}"/></span>
+                <span class="menu-text">Quản lý bài tập</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#">
+                    <a href="<c:url value="/admin-exericse-upload.html"/>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        <fmt:message key="label.exercise.audio.image.upload" bundle="${lang}"/>
+                        Thêm hình ảnh, audio
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -135,9 +135,12 @@
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <c:url var="loginUrl" value="/login.html">
+                        <c:param name="action" value="login" />
+                    </c:url>
+                    <a href="${loginUrl}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        <fmt:message key = "label.login" bundle="${lang}" />
+                        Đăng nhập
                     </a>
                     <b class="arrow"></b>
                 </li>
