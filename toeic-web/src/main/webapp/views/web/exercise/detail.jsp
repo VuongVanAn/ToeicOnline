@@ -19,13 +19,13 @@
                             </p>
                             <c:if test="${item.image != null}">
                                 <p>
-                                    <img src="<c:url value=""/>" width="300px" height="150px">
+                                    <img src="<c:url value="/repository/${item.image}"/>" width="300px" height="150px">
                                 </p>
                             </c:if>
                             <c:if test="${item.audio != null}">
                                 <p>
                                     <audio controls>
-                                        <source src="<c:url value=""/>" type="audio/mpeg">
+                                        <source src="<c:url value="/repository/${item.audio}"/>" type="audio/mpeg">
                                     </audio>
                                 </p>
                             </c:if>
@@ -58,12 +58,57 @@
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
         <input type="hidden" name="page" id="page" value="${items.page}"/>
-        <input type="button" class="btn btn-info" value="Xem đáp án" id=""/>
-        <input type="button" class="btn btn-info" value="Làm lại" id=""/>
+        <input type="button" class="btn btn-info" value="Xem đáp án" id="btnConfirm"/>
+        <input type="button" class="btn btn-info" value="Làm lại" id="btnAgain"/>
     </div>
 </form>
 <script>
+    var totalPages = ${items.totalPages};
+    var startPage = ${items.page};
+    $(document).ready(function () {
+        $('#btnConfirm').click(function () {
+            if ($('input[name = "answerUser"]:checked').length > 0) {
+                $('#formUrl').submit();
+            } else {
+                alert("Bạn chưa chọn đáp án nào cả!");
+            }
+        });
+        $('#btnAgain').click(function () {
+            var exerciseId = $('#exerciseId').val();
+            window.location = "/bai-tap-thuc-hanh.html?page="+startPage+"&exerciseId="+exerciseId+"";
+        });
+    });
 
+    $(function () {
+        var obj = $('#pagination-demo').twbsPagination({
+            totalPages: totalPages,
+            startPage: startPage,
+            visiblePages: 0,
+            onPageClick: function (event, page) {
+                if (page != startPage) {
+                    $('#page').val(page);
+                    var exerciseId = $('#exerciseId').val();
+                    window.location = "/bai-tap-thuc-hanh.html?page="+page+"&exerciseId="+exerciseId+"";
+                }
+            }
+        });
+    });
+
+    $('#formUrl').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/ajax-bai-tap-dap-an.html',
+            data: $(this).serialize(),
+            dataType: 'html',
+            success: function(res){
+                $('#result').html(res);
+            },
+            error: function (res) {
+                console.log(res);
+            }
+        });
+    });
 </script>
 </body>
 </html>
