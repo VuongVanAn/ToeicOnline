@@ -12,7 +12,7 @@
     <script src="<c:url value="/template/countdown/countdown.js"/>" type="text/javascript"></script>
 </head>
 <body>
-<form action="<c:url value=""/>" method="post" id="formUrl">
+<form action="<c:url value="/bai-thi-dap-an.html"/>" method="post" id="formUrl">
     <!-- START COUNTDOWN -->
     <script type="text/javascript">
         function doneHandler(result) {
@@ -44,7 +44,7 @@
 <div class="image group">
     <div class="grid news_desc">
         <div style="overflow: auto; height: 500px" >
-            <c:forEach items="" var="item">
+            <c:forEach items="${items.listResult}" var="item">
                 <c:if test="${item.number != null}">
                     <b>${item.number}.${item.question}</b>
                 </c:if>
@@ -54,18 +54,18 @@
                 <c:choose>
                     <c:when test="${item.type == PHOTO}">
                         <p>
-                            <img src="<c:url value=""/>" width="300px" height="150px">
+                            <img src="<c:url value="/repository/${item.image}"/>" width="300px" height="150px">
                         </p>
                         <p>
                             <audio controls>
-                                <source src="<c:url value=""/>" type="audio/mpeg">
+                                <source src="<c:url value="/repository/${item.audio}"/>" type="audio/mpeg">
                             </audio>
                         </p>
                     </c:when>
                     <c:when test="${item.type == QUESTION_RESPONSE}">
                         <p>
                             <audio controls>
-                                <source src="<c:url value=""/>" type="audio/mpeg">
+                                <source src="<c:url value="/repository/${item.audio}"/>" type="audio/mpeg">
                             </audio>
                         </p>
                     </c:when>
@@ -118,7 +118,14 @@
 </div>
 </form>
 <script type="text/javascript">
+    $(document).ready(function () {
 
+    });
+    $(function(){
+        setTimeout(function(){
+            $('#formUrl').submit();
+        },20000);
+    });
 </script>
 </body>
 </html>

@@ -76,7 +76,7 @@
                 </c:forEach>
             </div>
             <br/>
-            <a href="" class="btn btn-primary" type="button">Trở lại danh sách</a>
+            <a href="/danh-sach-bai-thi.html" class="btn btn-primary" type="button">Trở lại danh sách</a>
         </div>
         <div class="grid images_3_of_1">
             <div style="overflow: auto; height: 500px" >
@@ -110,8 +110,8 @@
                     <h4 class="modal-title">Xem kết quả thi</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Phần nghe: </p>
-                    <p>Phần đọc: </p>
+                    <p>Phần nghe: ${items.listenScore}</p>
+                    <p>Phần đọc: ${items.readingScore}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

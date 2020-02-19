@@ -13,15 +13,20 @@ import java.util.List;
 import java.util.Map;
 
 public class ExerciseQuestionServiceImpl implements ExerciseQuestionService {
-    public Object[] findByProperty(Map<String, Object> property, String sortExpression, String sortDirection, Integer offset, Integer limit) {
-        List<ExerciseQuestionDTO> result = new ArrayList<ExerciseQuestionDTO>();
-        Object[] objects = SingletonDaoUtil.getExaminationQuestionDaoInstance().findByProperty(property, sortExpression, sortDirection, offset, limit);
-        for (ExerciseQuestionEntity item : (List<ExerciseQuestionEntity>)objects[1]) {
+    public Object[] findByProperty(Map<String, Object> property, String sortExpression, String sortDirection, Integer offset, Integer limit, Integer exerciseId) {
+        /*List<ExerciseQuestionDTO> result = new ArrayList<ExerciseQuestionDTO>();
+        String whereClause = null;
+        if (exerciseId != null) {
+            whereClause = " AND exerciseEntity.exerciseId = "+exerciseId+"";
+        }
+        Object[] objects = SingletonDaoUtil.getExerciseQuestionDaoInstance().findByProperty(property, sortExpression, sortDirection, offset, limit, whereClause);
+        for (ExerciseQuestionEntity item: (List<ExerciseQuestionEntity>)objects[1]) {
             ExerciseQuestionDTO dto = ExerciseQuestionBeanUtil.toDto(item);
             dto.setExercise(ExerciseBeanUtil.toDto(item.getExerciseEntity()));
             result.add(dto);
         }
         objects[1] = result;
-        return objects;
+        return objects;*/
+        return new Object[]{};
     }
 }

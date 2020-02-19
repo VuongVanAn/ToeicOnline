@@ -29,30 +29,20 @@ public class ExerciseQuestionController extends HttpServlet {
     }
 
     private void getExerciseQuestion(ExerciseQuestionCommand command) {
-        Map<String, Object> properties = buildMap(command);
         command.setMaxPageItems(1);
         RequestUtil.initSearchBeanManual(command);
-        Object[] objects = SingletonServiceUtil.getExerciseQuestionServiceInstance().findByProperty(properties, command.getSortExpression(),
-                command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
+        Object[] objects = SingletonServiceUtil.getExerciseQuestionServiceInstance().findByProperty(new HashMap<String, Object>(), command.getSortExpression(),
+                command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems(), command.getExerciseId());
         command.setListResult((List<ExerciseQuestionDTO>) objects[1]);
         command.setTotalItems(Integer.parseInt(objects[0].toString()));
         command.setTotalPages((int) Math.ceil((double) command.getTotalItems() / command.getMaxPageItems()));
-    }
-
-    private Map<String, Object> buildMap(ExerciseQuestionCommand command) {
-        Map<String, Object> result = new HashMap<String, Object>();
-        ExerciseQuestionDTO pojo = command.getPojo();
-        if (pojo.getExercise() != null && pojo.getExercise().getExerciseId() != null) {
-            result.put("exercise.exerciseId", pojo.getExercise().getExerciseId());
-        }
-        return result;
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ExerciseQuestionCommand command = FormUtil.populate(ExerciseQuestionCommand.class, request);
         getExerciseQuestion(command);
-        for (ExerciseQuestionDTO item : command.getListResult()) {
+        for (ExerciseQuestionDTO item: command.getListResult()) {
             if (!command.getAnswerUser().equals(item.getCorrectAnswer())) {
                 command.setCheckAnswer(true);
             }
